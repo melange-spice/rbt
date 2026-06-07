@@ -16,7 +16,11 @@ public:
     Node *root;
 
     int insert_like_bst(Node *n);
+    bool delete_like_bst(int value);
     int determine_case(Node *n, Node *parent, Node *grand_parent, Node *uncle);
+
+    Node* search(int value);
+    Node* smallest(Node* starting_node);
 
 public:
     rbt();
@@ -38,7 +42,21 @@ public:
     void insert(int value);
 
     int determine_case(Node *n);
+
+    bool delete_(int value);
+    
 };
+
+bool rbt::delete_(int value){
+    
+    Node* to_delete = search(value);
+
+    if (to_delete->color=='r')
+    {
+        
+    }
+    
+}
 
 // determine whether we have a 2node, 3node or a 4node case
 // 2node = parent is black   returns 2
