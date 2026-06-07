@@ -3,45 +3,71 @@
 #include "insert.cpp"
 #include "delete2.cpp"
 
-void rbt::predisplay(Node* t)
+void rbt::predisplay(Node *t)
 {
     if (t != nullptr)
     {
-        cout << t->data << " ( " << t->color << " )" << endl << endl;
+        cout << t->data << " ( " << t->color << " )" << endl
+             << endl;
 
         predisplay(t->left);
         predisplay(t->right);
     }
 }
-//NLR
+// NLR
 void rbt::preorder()
 {
+    if (root == nullptr)
+    {
+        cout << "tree is empty\n";
+        return;
+    }
+
     predisplay(root);
 }
 
-// void rbt::indisplay(Node* t)
-// {
-//     if (t != nullptr)
-//     {
-//         cout << t->data << " ( " << t->color << " )" << endl << endl;
+void rbt::indisplay(Node* t)
+{
+    if (t != nullptr)
+    {
+        indisplay(t->left);
+        cout << t->data << " ( " << t->color << " )" << endl << endl;
+        indisplay(t->right);
+    }
+}
+void rbt::inorder()
+{
+    if (root == nullptr)
+    {
+        cout << "tree is empty\n";
+        return;
+    }
+    indisplay(root);
+}
 
-//         indisplay(t->left);
-//         indisplay(t->right);
-//     }
-// }
-// void rbt::inorder()
-// {
-//     predisplay(root);
-// }
-
-
-
-
+void rbt::postdisplay(Node* t)
+{
+    if (t != nullptr)
+    {
+        postdisplay(t->left);
+        postdisplay(t->right);
+        cout << t->data << " ( " << t->color << " )" << endl << endl;
+    }
+}
+void rbt::postorder()
+{
+    if (root == nullptr)
+    {
+        cout << "tree is empty\n";
+        return;
+    }
+    postdisplay(root);
+}
 
 
 // rotate right around the pivot n
 // assuming p and gp are valid
-void rbt::rotate_left(Node* n, Node* grand_parent, Node* parent)
+void rbt::rotate_left(Node *n, Node *grand_parent, Node *parent)
 {
     // can't rotate if no parent
     if (parent == n)
@@ -76,7 +102,7 @@ void rbt::rotate_left(Node* n, Node* grand_parent, Node* parent)
 
 // rotate right around the pivot n
 // assuming p and gp are valid
-void rbt::rotate_right(Node* n, Node* grand_parent, Node* parent)
+void rbt::rotate_right(Node *n, Node *grand_parent, Node *parent)
 {
     // can't rotate if no parent
     if (parent == n)
@@ -109,13 +135,12 @@ void rbt::rotate_right(Node* n, Node* grand_parent, Node* parent)
     }
 }
 
-
 // rotate left around the pivot n
 // finds gp and parent automatically
-void rbt::rotate_left(Node* n)
+void rbt::rotate_left(Node *n)
 {
-    Node* parent = find_parent(n);
-    Node* grand_parent = find_parent(parent);
+    Node *parent = find_parent(n);
+    Node *grand_parent = find_parent(parent);
 
     // can't rotate if no parent
     if (parent == n)
@@ -149,10 +174,10 @@ void rbt::rotate_left(Node* n)
 }
 
 // rotate right around the pivot n
-void rbt::rotate_right(Node* n)
+void rbt::rotate_right(Node *n)
 {
-    Node* parent = find_parent(n);
-    Node* grand_parent = find_parent(parent);
+    Node *parent = find_parent(n);
+    Node *grand_parent = find_parent(parent);
 
     // can't rotate if no parent
     if (parent == n)
@@ -187,15 +212,15 @@ void rbt::rotate_right(Node* n)
 
 // find the parent of the given node
 // if the node is not in the tree then it returns the would be parent
-Node* rbt::find_parent(Node* n)
+Node *rbt::find_parent(Node *n)
 {
     if (n == root)
     {
         return root;
     }
 
-    Node* tmp = root;
-    Node* parent = root;
+    Node *tmp = root;
+    Node *parent = root;
     while (tmp != n)
     {
         if (n->data < tmp->data)
@@ -230,9 +255,7 @@ Node* rbt::find_parent(Node* n)
     return parent;
 }
 
-
-
-rbt::rbt() : root{ nullptr }
+rbt::rbt() : root{nullptr}
 {
 }
 
