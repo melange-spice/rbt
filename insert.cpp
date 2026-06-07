@@ -225,8 +225,18 @@ void rbt::four_node_case(Node* n)
 
 void rbt::insert(int value)
 {
+    //duplicate case
+    Node* duplicate = search(value);
 
-    Node *new_node = new Node{value, 'R', nullptr, nullptr};
+    //duplicate value found
+    if (duplicate!=nullptr)
+    {
+        duplicate->counter++;
+        return;
+    }
+    
+    //duplicate not found
+    Node *new_node = new Node{value, 'R', 1,nullptr, nullptr};
 
     if (root == nullptr)
     {

@@ -41,11 +41,13 @@ int main()
     r.insert(110);
     r.insert(115);
     r.insert(125);
+    
+    
 
 
-    r.preorder();
+    //r.preorder();
     //r.inorder();
-    //r.postorder();
+    r.postorder();
     
     
 

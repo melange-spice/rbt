@@ -94,31 +94,7 @@ bool rbt::delete_like_bst(int value)
     return true;
 }
 
-// given the value return the node where the value is located in the tree
-Node *rbt::search(int value)
-{
-    Node *current = root;
 
-    // if we haven't found the value then search for the value in the tree
-    while (current->data != value)
-    {
-        // go to left subtree
-        if (value < current->data)
-        {
-            current = current->left; // advance the child
-        }
-        else if (value > current->data)
-        {
-            // go to right subtree
-            current = current->right; // advance the child
-        }
-
-        // value is not in the current tree
-        if (current == nullptr)
-            return current;
-    }
-    return current;
-}
 
 // returns the smallest node given the starting node of the tree
 Node *rbt::smallest(Node *starting_node)

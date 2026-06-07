@@ -5,11 +5,11 @@ using namespace std;
 struct Node
 {
     int data;
-    char color; // r for red b for black
+    char color; // R for red B for black
+    int counter;
+
     Node* left;
     Node* right;
-
-    int counter;
 };
 
 class rbt

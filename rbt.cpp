@@ -7,8 +7,7 @@ void rbt::predisplay(Node *t)
 {
     if (t != nullptr)
     {
-        cout << t->data << " ( " << t->color << " )" << endl
-             << endl;
+        cout << t->data << "\t\t  " << t->color << "\t  "<<t->counter << endl;
 
         predisplay(t->left);
         predisplay(t->right);
@@ -23,6 +22,7 @@ void rbt::preorder()
         return;
     }
 
+    cout<<"Node value \t Color \t Counter\n";
     predisplay(root);
 }
 
@@ -31,7 +31,7 @@ void rbt::indisplay(Node* t)
     if (t != nullptr)
     {
         indisplay(t->left);
-        cout << t->data << " ( " << t->color << " )" << endl << endl;
+        cout << t->data << "\t\t  " << t->color << "\t  "<<t->counter << endl;
         indisplay(t->right);
     }
 }
@@ -42,6 +42,7 @@ void rbt::inorder()
         cout << "tree is empty\n";
         return;
     }
+    cout<<"Node value \t Color \t Counter\n";
     indisplay(root);
 }
 
@@ -51,7 +52,7 @@ void rbt::postdisplay(Node* t)
     {
         postdisplay(t->left);
         postdisplay(t->right);
-        cout << t->data << " ( " << t->color << " )" << endl << endl;
+        cout << t->data << "\t\t  " << t->color << "\t  "<<t->counter << endl;
     }
 }
 void rbt::postorder()
@@ -61,9 +62,42 @@ void rbt::postorder()
         cout << "tree is empty\n";
         return;
     }
+    cout<<"Node value \t Color \t Counter\n";
     postdisplay(root);
 }
 
+// given the value return the node where the value is located in the tree
+Node *rbt::search(int value)
+{
+    Node *current = root;
+    
+    //empty tree
+    if (current == nullptr)
+    {
+        return nullptr;
+    }
+    
+
+    // if we haven't found the value then search for the value in the tree
+    while (current->data != value)
+    {
+        // go to left subtree
+        if (value < current->data)
+        {
+            current = current->left; // advance the child
+        }
+        else if (value > current->data)
+        {
+            // go to right subtree
+            current = current->right; // advance the child
+        }
+
+        // value is not in the current tree
+        if (current == nullptr)
+            return current;
+    }
+    return current;
+}
 
 // rotate right around the pivot n
 // assuming p and gp are valid
@@ -255,32 +289,6 @@ Node *rbt::find_parent(Node *n)
     return parent;
 }
 
-
-// given the value return the node where the value is located in the tree
-Node *rbt::search(int value)
-{
-    Node *current = root;
-
-    // if we haven't found the value then search for the value in the tree
-    while (current->data != value)
-    {
-        // go to left subtree
-        if (value < current->data)
-        {
-            current = current->left; // advance the child
-        }
-        else if (value > current->data)
-        {
-            // go to right subtree
-            current = current->right; // advance the child
-        }
-
-        // value is not in the current tree
-        if (current == nullptr)
-            return current;
-    }
-    return current;
-}
 
 rbt::rbt() : root{nullptr}
 {
